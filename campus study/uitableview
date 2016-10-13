@@ -1,0 +1,64 @@
+//
+//  ViewController.m
+//  1013Uitableview
+//
+//  Created by 한상욱 on 2016. 10. 13..
+//  Copyright © 2016년 HsoCompany. All rights reserved.
+//
+
+#import "ViewController.h"
+
+@interface ViewController ()
+
+<UITableViewDelegate, UITableViewDataSource>
+@property NSArray *carName;
+
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.carName = @[@"티코",@"람보", @"미니쿠퍼", @"맥나렌", @"레토나", @"포니", @"부가티", @"벨로스터", @"시발차", @"두돈반"];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
+    tableView.dataSource = self;
+    tableView.delegate = self;
+    [self.view addSubview:tableView];
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.carName.count;
+    
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+
+if( cell == nil){
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    
+    NSLog(@"%ld", indexPath.row);
+    
+             }
+    cell.textLabel.text = self.carName[indexPath.row];
+
+    return cell;
+
+    }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+    
+}
+
+
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+@end
